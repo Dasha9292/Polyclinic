@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Личный кабинет";
+}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+
+{<h2 class="zagolovok">Личный кабинет</h2>
+    <p>Выберете, что вы хотите сделать</p>
+    <p>
+        <td>
+            <h3 class="zagolovok">Изменение записей на прием</h3>
+          
+            @Html.ActionLink("Запись на прием", "Index", "Zapis")
+        </td>
+        <td>
+            <h3 class="zagolovok">Изменить статус заявок</h3>
+           
+            @Html.ActionLink("Запись на прием", "IndexAd", "Zapis")
+        </td>
+
+        <td>
+            <h3 class="zagolovok">Перейти к справочнику диагнозов</h3>
+            
+            @Html.ActionLink("Справочник диагнозов", "Index", "Sbolezn")
+        <td>
+            <h3 class="zagolovok">Перейти к справочнику вречей</h3>
+           
+            @Html.ActionLink("Справочник врачей", "Index", "Sdoctor")
+        </td>
+        <td>
+            <h3 class="zagolovok">Измененить записи о врачах</h3>
+            
+            @Html.ActionLink("Врачи", "Index", "Doctors")
+        </td>
+        <td>
+            <h3 class="zagolovok">Измененить записи о пациентах</h3>
+        
+            @Html.ActionLink("Пациент", "Index", "Patient")
+        </td>
+
+       
+
+    </p>}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("Doctor"))
+
+{<h2 class="zagolovok">Личный кабинет</h2>
+    <p>Выберете, что вы хотите сделать</p>
+    <p>
+        <td>
+            <h3 class="zagolovok">Информация о болезнях</h3>
+         
+            @Html.ActionLink("Справочник диагнозов", "Index", "Sbolezn")
+        </td>
+        <td>
+            <h3 class="zagolovok">Посмотреть сегодняшние записи на прием</h3>
+          
+            @Html.ActionLink("Запись на прием", "IndexIdoctor", "Zapis", new { idoc = User.Identity.GetUserId() }, null)
+<td>
+
+    </p>}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("Patient"))
+
+{<h2 class="zagolovok">Личный кабинет</h2>
+    <p>
+
+        <h3 class="zagolovok">Подать заявку для записи на прием </h3>
+        @Html.ActionLink("Записаться", "Index2", "Zapis")
+        <h3 class="zagolovok">Просмотреть свои записи </h3>
+        @Html.ActionLink("Мои записи на прием", "IndexP", "Zapis", new{ idp = User.Identity.GetUserId()} ,null)
+        <h3 class="zagolovok">Посмотреть выписанные рецепты</h3>
+        @Html.ActionLink("Выписанные рецепты", "IndexR", "Rechept", new { idr = User.Identity.GetUserId() }, null)
+        <h3 class="zagolovok">Посмотреть справочник о болезнях </h3>
+        @Html.ActionLink("Справочник диагнозов", "Index", "Sbolezn")
+        <h3 class="zagolovok">Посмотреть информацию о врачах</h3>
+        @Html.ActionLink("Справочник врачей", "Index", "Sdoctor")
+
+    </p>}
+
+
+
+

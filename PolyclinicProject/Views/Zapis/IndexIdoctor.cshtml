@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PolyclinicProject.Запись_на_прием>
+
+@{
+    ViewBag.Title = "IndexIdoctor";
+}
+
+<h2>Записи на сегодня</h2>
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{ <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_обращения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Специалист)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Участок)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._Номер_пациента)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_приема)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_врача)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Причина_обращения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус_заявки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Время)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_обращения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Специалист)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Участок)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._Номер_пациента)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_приема)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_врача)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Причина_обращения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Статус_заявки)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Время)
+            </td>
+            <td>
+
+                @Html.ActionLink("Детали", "Details", new { id = item.Номер_записи }) |
+                <a href="">@Html.ActionLink("Создать рецепт", "Create", "Rechept", new { idpach = item._Номер_пациента }, null)</a>
+
+            </td>
+        </tr>
+    }
+
+</table>

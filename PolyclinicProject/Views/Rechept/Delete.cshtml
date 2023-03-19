@@ -1,0 +1,72 @@
+﻿@model PolyclinicProject.Рецепт
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Рецепт</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._Номер_пациента)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Номер_пациента)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_врача)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Назначенное_лечение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Назначенное_лечение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Документ_выписки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Документ_выписки)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

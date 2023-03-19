@@ -1,0 +1,57 @@
+﻿@model PolyclinicProject.Пациент
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Пациент</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_записи)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_записи)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_полиса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_полиса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Фио)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Фио)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Пароль)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Пароль)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_участка)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Номер_записи }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

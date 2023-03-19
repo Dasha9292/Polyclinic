@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<PolyclinicProject.Запись_на_прием>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Запись на прием</h2>
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{ <p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Дата_обращения)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Специалист)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Участок)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Номер_пациента)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Дата_приема)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Номер_врача)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Причина_обращения)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Статус_заявки)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Время)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_обращения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Специалист)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Участок)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._Номер_пациента)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_приема)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Номер_врача)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Причина_обращения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Статус_заявки)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Время)
+
+                </td>
+
+                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <p>
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_записи }) 
+                        @Html.ActionLink("Детали", "Details", new { id = item.Номер_записи }) 
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_записи })
+
+                    </td>
+                    </p>
+                }
+            </tr>
+
+        }
+
+    </table>}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+
+{<h2 class="zagolovok">Изменить статус заявки</h2>
+    <p>
+        @Html.ActionLink("Статус заявки", "IndexAd")
+    </p>}
+
+@if (ViewContext.HttpContext.User.IsInRole("Doctor"))
+
+{<h2 class="zagolovok">Мои записи на сегоднешний прием</h2>
+    <p>
+        @Html.ActionLink("Записи на сегоднешний прием", "IndexIdoctor", new { idoc = User.Identity.GetUserId() })
+    </p>}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("Patient"))
+
+{
+    <p>
+        <h2 class="zagolovok">Подать заявку для записи на прием </h2>
+        @Html.ActionLink("Записаться", "Index2", new { idp = User.Identity.GetUserId() })
+        <h2 class="zagolovok">Просмотреть свои записи </h2>
+        @Html.ActionLink("Мои записи на прием", "IndexP", new { idp = User.Identity.GetUserId() })
+        <h2 class="zagolovok">Мои выписанные рецепты</h2>
+        @Html.ActionLink("Выписанные рецепты", "IndexR", "Rechept", new { idr = User.Identity.GetUserId() }, null);
+    </p>}

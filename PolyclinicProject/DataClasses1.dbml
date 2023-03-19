@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ProjectPolyclinic" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-HOI473L\SQLEXPRESSS;Initial Catalog=ProjectPolyclinic;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ProjectPolyclinicConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Врачи" Member="Врачи">
+    <Type Name="Врачи">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Логин" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Фио" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Пароль" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Специалист" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[График работы]" Member="График_работы" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Участок" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Врачи_Рецепт" Member="Рецепт" ThisKey="Номер_записи" OtherKey="Номер_врача" Type="Рецепт" />
+      <Association Name="Врачи_Запись_на_прием" Member="Запись_на_прием" ThisKey="Номер_записи" OtherKey="Номер_врача" Type="Запись_на_прием" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Администратор" Member="Администратор">
+    <Type Name="Администратор">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Фио" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Логин" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Пароль" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Рецепт" Member="Рецепт">
+    <Type Name="Рецепт">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Дата" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Название" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[[Номер пациента]" Member="_Номер_пациента" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Номер врача]" Member="Номер_врача" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Назначенное лечение]" Member="Назначенное_лечение" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[Документ выписки]" Member="Документ_выписки" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Врачи_Рецепт" Member="Врачи" ThisKey="Номер_врача" OtherKey="Номер_записи" Type="Врачи" IsForeignKey="true" />
+      <Association Name="Пациент_Рецепт" Member="Пациент" ThisKey="_Номер_пациента" OtherKey="Номер_записи" Type="Пациент" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Справочник врачей]" Member="Справочник_врачей">
+    <Type Name="Справочник_врачей">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Название" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Описание" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Справочник диагнозов]" Member="Справочник_диагнозов">
+    <Type Name="Справочник_диагнозов">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Номер болезни]" Member="Номер_болезни" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Описание" Type="System.String" DbType="NChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Запись на прием]" Member="Запись_на_прием">
+    <Type Name="Запись_на_прием">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Дата обращения]" Member="Дата_обращения" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Специалист" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Участок" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[[Номер пациента]" Member="_Номер_пациента" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Дата приема]" Member="Дата_приема" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Номер врача]" Member="Номер_врача" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Причина обращения]" Member="Причина_обращения" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Статус заявки]" Member="Статус_заявки" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Время" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Association Name="Врачи_Запись_на_прием" Member="Врачи" ThisKey="Номер_врача" OtherKey="Номер_записи" Type="Врачи" IsForeignKey="true" />
+      <Association Name="Пациент_Запись_на_прием" Member="Пациент" ThisKey="_Номер_пациента" OtherKey="Номер_записи" Type="Пациент" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Пациент" Member="Пациент">
+    <Type Name="Пациент">
+      <Column Name="[Номер записи]" Member="Номер_записи" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Номер полиса]" Member="Номер_полиса" Type="System.String" DbType="NChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="Фио" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Пароль" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Номер участка]" Member="Номер_участка" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Логин" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Пациент_Рецепт" Member="Рецепт" ThisKey="Номер_записи" OtherKey="_Номер_пациента" Type="Рецепт" />
+      <Association Name="Пациент_Запись_на_прием" Member="Запись_на_прием" ThisKey="Номер_записи" OtherKey="_Номер_пациента" Type="Запись_на_прием" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PolyclinicProject.Пациент>
+
+@{
+    ViewBag.Title = "Пациенты";
+}
+
+<h2>Список пациентов</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_полиса)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Фио)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Пароль)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Номер_полиса)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Фио)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Пароль)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Номер_участка)
+        </td>
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {<td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_записи }) |
+                @Html.ActionLink("Детали", "Details", new { id = item.Номер_записи }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_записи })
+            </td>}
+    </tr>
+}
+
+</table>

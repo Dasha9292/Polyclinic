@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNet.Identity
+@model PolyclinicProject.Рецепт
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Рецепт</h4>
+    <hr />
+    @Html.HiddenFor(model => model.Номер_врача, new { id = "ido", Value = User.Identity.GetUserId() })
+    @Html.HiddenFor(model => model.Дата, new { Value = DateTime.Today })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Название, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Название, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Название, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model._Номер_пациента, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model._Номер_пациента, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model._Номер_пациента, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Назначенное_лечение, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Назначенное_лечение, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Назначенное_лечение, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Документ_выписки, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Документ_выписки)
+                @Html.ValidationMessageFor(model => model.Документ_выписки, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

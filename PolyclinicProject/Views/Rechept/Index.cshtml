@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PolyclinicProject.Рецепт>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{ <h2>Все выписанные рецепты</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Название)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._Номер_пациента)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_врача)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Назначенное_лечение)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Документ_выписки)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Название)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._Номер_пациента)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_врача)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Назначенное_лечение)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Документ_выписки)
+            </td>
+            @if (ViewContext.HttpContext.User.IsInRole("Doctor"))
+            {<td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_записи }) |
+                    @Html.ActionLink("Детали", "Details", new { id = item.Номер_записи }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_записи })
+                </td>}
+        </tr>
+    }
+
+</table>}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PolyclinicProject.Справочник_диагнозов>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Справочник диагнозов</h2>
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_болезни)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Описание)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_болезни)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Описание)
+            </td>
+            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_записи }) |
+                    @Html.ActionLink("Детали", "Details", new { id = item.Номер_записи }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_записи })
+                </td>
+}
+        </tr>
+    }
+
+</table>

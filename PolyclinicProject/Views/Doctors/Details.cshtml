@@ -1,0 +1,72 @@
+﻿@model PolyclinicProject.Врачи
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Врачи</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_записи)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Номер_записи)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Логин)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Логин)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Фио)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Фио)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Пароль)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Пароль)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Специалист)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Специалист)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.График_работы)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.График_работы)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Участок)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Номер_записи }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

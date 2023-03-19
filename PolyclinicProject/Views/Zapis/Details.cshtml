@@ -1,0 +1,90 @@
+﻿@model PolyclinicProject.Запись_на_прием
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Запись_на_прием</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_обращения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_обращения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Специалист)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Специалист)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Участок)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._Номер_пациента)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Номер_пациента)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_приема)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_приема)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_врача)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_врача)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Причина_обращения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Причина_обращения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Статус_заявки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_заявки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Время)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Время)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Номер_записи }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

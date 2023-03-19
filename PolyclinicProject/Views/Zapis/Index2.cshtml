@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<PolyclinicProject.Запись_на_прием>
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Введите данные</h2>
+
+
+@using (Html.BeginForm("IndexId", "Zapis"))
+{
+    <div style="float:left; padding: 10px 0 0 100px; width:50%">
+        Участок: <input type="text" id="idych" name="idych" style="width: 225px" />
+        <br />
+        Специалист:<input type="text" id="spec" name="spec" style="width: 225px" />
+        <input type="submit" id="IndexId" value="Search" />
+    </div>
+}
